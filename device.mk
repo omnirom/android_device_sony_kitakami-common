@@ -14,7 +14,7 @@
 
 SOMC_PLATFORM := kitakami
 
-SONY_ROOT = device/sony/kitakami/rootdir
+SONY_ROOT = device/sony/kitakami-common/rootdir
 
 # Media
 PRODUCT_COPY_FILES += \
