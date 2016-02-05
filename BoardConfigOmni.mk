@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include device/sony/kitakami-common/BoardConfig.mk
+
 # TWRP Recovery
 TARGET_NO_SEPARATE_RECOVERY := true
 BOARD_HAS_NO_SELECT_BUTTON := true
