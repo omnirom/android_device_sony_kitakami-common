@@ -14,6 +14,9 @@
 
 SONY_ROOT = device/sony/kitakami-common/rootdir
 
+# Common config
+include device/sony/kitakami-common/platform.mk
+
 # Copying files
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/twrp.fstab:recovery/root/etc/twrp.fstab
