@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/sony/common/common.mk)
+$(call inherit-product, device/sony/common/common_omni.mk)
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
 SOMC_PLATFORM := kitakami
