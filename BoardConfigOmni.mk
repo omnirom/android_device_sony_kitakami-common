@@ -12,13 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Kernel
-BOARD_CUSTOM_BOOTIMG := true
-BOARD_KERNEL_SEPARATED_DT := true
-
-# Proprietary files
-SONY_AOSP ?= true
-
 # TWRP Recovery
 TARGET_NO_SEPARATE_RECOVERY := true
 BOARD_HAS_NO_SELECT_BUTTON := true
