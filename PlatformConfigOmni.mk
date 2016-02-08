@@ -12,4 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Common
 include device/sony/kitakami-common/PlatformConfig.mk
+
+# Don't use DSPManager
+TARGET_NO_DSPMANAGER := true
