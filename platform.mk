@@ -61,6 +61,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
 
+DEVICE_PACKAGE_OVERLAYS += \
+    device/sony/kitakami/overlay
+
 # Platform Init
 PRODUCT_PACKAGES += \
     fstab.kitakami \
@@ -98,7 +101,6 @@ PRODUCT_PACKAGES += \
 # RILD
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
-    rild.libargs=-d /dev/smd0 \
     ril.subscription.types=NV,RUIM
 
 # system prop for opengles version
