@@ -81,7 +81,7 @@ NFC_NXP_CHIP_TYPE := PN547C2
 WITH_DEXPREOPT := false
 
 # Props for hotplugging
-TARGET_SYSTEM_PROP += device/sony/kitakami/system.prop
+TARGET_SYSTEM_PROP += device/sony/kitakami-common/system.prop
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/sony/kitakami-common/sepolicy
