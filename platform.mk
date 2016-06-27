@@ -56,7 +56,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
 
 DEVICE_PACKAGE_OVERLAYS += \
-    device/sony/kitakami/overlay
+    device/sony/kitakami-common/overlay
 
 # Platform Init
 PRODUCT_PACKAGES += \
