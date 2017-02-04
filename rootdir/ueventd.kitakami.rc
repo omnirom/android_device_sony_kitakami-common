@@ -112,15 +112,12 @@
 /sys/devices/virtual/switch/wfd         state       0660 system system
 
 # NFC
-/dev/nfc-nci                                        0660 nfc nfc
-/dev/pn544                                          0660 nfc nfc
-/dev/pn547                                          0660 nfc nfc
-/dev/pn54x                                          0660 nfc nfc
-/sys/devices/f9928000.i2c/i2c-6/6-0028  init_deinit 0200 nfc nfc
-/sys/devices/f9928000.i2c/i2c-6/6-0028  set_pwr     0200 nfc nfc
-/sys/devices/f9928000.i2c/i2c-6/6-0028  res_ready   0400 nfc nfc
-/sys/devices/f9928000.i2c/i2c-6/6-0028  recv_rsp    0600 nfc nfc
-/sys/devices/f9928000.i2c/i2c-6/6-0028  send_cmd    0200 nfc nfc
+/dev/pn54x                                                0660 nfc nfc
+/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0028  init_deinit 0200 nfc nfc
+/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0028  set_pwr     0200 nfc nfc
+/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0028  res_ready   0400 nfc nfc
+/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0028  recv_rsp    0600 nfc nfc
+/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0028  send_cmd    0200 nfc nfc
 
 # LED
 /sys/devices/soc.0/03-qcom,leds-d000/leds/led:* max_brightness          0664 system system
@@ -167,3 +164,6 @@
 /sys/devices/virtual/cap_sensor/ad7146              sw_updata      0440    system   system
 /sys/devices/virtual/switch/ad7146                  state          0660    system   system
 /sys/devices/virtual/switch/ad7146_*                state          0660    system   system
+
+# BT/FM/ANT+ V4L2
+/dev/brcm_bt_drv          0660   bluetooth  net_bt_stack
