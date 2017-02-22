@@ -18,6 +18,7 @@ import init.kitakami.pwr.rc
 
 on init
     symlink /dev/block/platform/soc.0/f9824900.sdhci /dev/block/bootdevice
+    export LD_SHIM_LIBS "/system/lib64/libgui.so|/system/lib64/libgui_shim.so:/system/lib/libgui.so|/system/lib/libgui_shim.so:/system/vendor/lib/hw/camera.msm8994.so|/system/lib/camera.msm8994_shim.so"
 
 on fs
     mount_all ./fstab.kitakami

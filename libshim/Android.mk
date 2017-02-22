@@ -1,4 +1,4 @@
-# Copyright (C) 2014 The Android Open Source Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,19 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-SONY_ROOT = device/sony/kitakami-common/rootdir
+ifneq (,$(filter true, $(USE_CAMERA_STUB)))
+LOCAL_PATH := $(call my-dir)
 
-# Common config
-include device/sony/kitakami-common/platform.mk
+include $(CLEAR_VARS)
 
-# Snapdragon Camera
-PRODUCT_PACKAGES += \
-    SnapdragonCamera
+LOCAL_SRC_FILES := libgui_shim.cpp
 
-# Shim libs
-PRODUCT_PACKAGES += \
-    libgui_shim
+LOCAL_MODULE := libgui_shim
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_SHARED_LIBRARIES := libgui
+LOCAL_MULTILIB := both
 
-# Copying files
-PRODUCT_COPY_FILES += \
-    $(SONY_ROOT)/twrp.fstab:recovery/root/etc/twrp.fstab
+include $(BUILD_SHARED_LIBRARY)
+
+endif #USE_CAMERA_STUB
