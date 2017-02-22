@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The Android Open Source Project
+<!-- Copyright (C) 2016 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -23,5 +23,19 @@
 
     <!-- Restart preview for front camera onPictureTaken -->
     <bool name="front_camera_restart_preview_onPictureTaken">true</bool>
+
+    <!-- Opens back camera using openLegacy() and forces api v1 -->
+    <bool name="back_camera_open_legacy">true</bool>
+
+    <!-- Opens front camera using openLegacy() and forces api v1 -->
+    <bool name="front_camera_open_legacy">true</bool>
+
+    <!-- Use following iso parameter.-->
+    <string name="key_iso">sony-iso</string>
+    <string name="key_iso_values">sony-iso-values</string>
+
+    <!-- ISO values use numbers.
+         Example: 50 instead of ISO50 -->
+    <bool name="iso_values_use_numbers">true</bool>
 
 </resources>
