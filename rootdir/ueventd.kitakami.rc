@@ -167,3 +167,6 @@
 
 # BT/FM/ANT+ V4L2
 /dev/brcm_bt_drv          0660   bluetooth  net_bt_stack
+
+# TA
+/dev/block/bootdevice/by-name/TA 0770  tad      tad
