@@ -13,6 +13,11 @@
 # limitations under the License.
 
 include device/sony/kitakami-common/PlatformConfig.mk
+
+# Override the default android_filesystem_config.h
+TARGET_ANDROID_FILESYSTEM_CONFIG_H := \
+    device/sony/kitakami-common/include/private/android_filesystem_config.h
+
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
 TARGET_QCOM_DISPLAY_VARIANT := caf-msm8992
