@@ -13,3 +13,6 @@
 # limitations under the License.
 
 include device/sony/kitakami-common/PlatformConfig.mk
+
+# We use stock camera blobs
+USE_CAMERA_STUB := true

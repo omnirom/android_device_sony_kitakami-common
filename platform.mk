@@ -86,8 +86,18 @@ PRODUCT_PACKAGES += \
     gps.msm8994
 
 # CAMERA
+ifneq (,$(filter true, $(USE_CAMERA_STUB)))
+# CAMERA
 PRODUCT_PACKAGES += \
     camera.msm8994
+else
+# CAMERA & SENSORS
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.sensors.gestures=true \
+    ro.qc.sdk.gestures.camera=false \
+    ro.qc.sdk.camera.facialproc=false \
+    camera.disable_zsl_mode=1
+endif
 
 # Keymaster
 PRODUCT_PACKAGES += \
