@@ -298,5 +298,23 @@ ssize_t fs_config_generate(char *buffer, size_t length, const struct fs_path_con
 
 __END_DECLS
 
+#define NO_ANDROID_FILESYSTEM_CONFIG_DEVICE_DIRS
+/* static const struct fs_path_config android_device_dirs[] = { }; */
+
+/* Rules for files.
+** These rules are applied based on "first match", so they
+** should start with the most specific path and work their
+** way up to the root. Prefixes ending in * denotes wildcard
+** and will allow partial matches.
+*/
+static const struct fs_path_config android_device_files[] = {
+    { 00700, AID_RADIO,     AID_SHELL,     (1ULL << CAP_BLOCK_SUSPEND), "system/vendor/bin/qmuxd" },
+    { 00700, AID_CAMERA,    AID_SHELL,     (1ULL << CAP_SYS_NICE), "system/vendor/bin/mm-qcamera-daemon" },
+#ifdef NO_ANDROID_FILESYSTEM_CONFIG_DEVICE_DIRS
+    { 00000, AID_ROOT,      AID_ROOT,      0, "system/etc/fs_config_dirs" },
+#endif
+};
+
+
 #endif
 #endif
