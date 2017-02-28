@@ -14,6 +14,9 @@
 
 include device/sony/kitakami-common/PlatformConfig.mk
 
+# Kernel source
+TARGET_KERNEL_SOURCE := kernel/sony/msm8994
+
 # Override the default android_filesystem_config.h
 TARGET_ANDROID_FILESYSTEM_CONFIG_H := \
     device/sony/kitakami-common/include/private/android_filesystem_config.h
