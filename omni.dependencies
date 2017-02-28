@@ -3,6 +3,30 @@
     "remote":       "omnirom",
     "repository":   "android_device_sony_common",
     "target_path":  "device/sony/common",
+    "revision":     "caf-7.1"
+  },
+  {
+    "remote":       "omnirom",
+    "repository":   "android_kernel_sony_msm",
+    "target_path":  "kernel/sony/msm8994",
+    "revision":     "msm8994-caf-7.1"
+  },
+  {
+    "remote":       "omnirom",
+    "repository":   "android_hardware_qcom_display-caf-msm8992",
+    "target_path":  "hardware/qcom/display-caf-msm8992",
+    "revision":     "android-7.1"
+  },
+  {
+    "remote":       "omnirom",
+    "repository":   "android_hardware_qcom_media-caf-msm8992",
+    "target_path":  "hardware/qcom/media-caf-msm8992",
+    "revision":     "android-7.1"
+  },
+  {
+    "remote":       "omnirom",
+    "repository":   "android_hardware_qcom_audio-caf-msm8992",
+    "target_path":  "hardware/qcom/audio-caf-msm8992",
     "revision":     "android-7.1"
   },
   {
