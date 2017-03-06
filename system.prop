@@ -13,3 +13,7 @@ cpuquiet.normal.max_cpus=8
 rqbalance.normal.balance_level=40
 rqbalance.normal.up_threshold=100 300 380 400 500 575 625 4294967295
 rqbalance.normal.down_threshold=0 70 200 280 330 450 515 585
+
+
+# Disable BT rfkill: it's handled in UIM
+ro.rfkilldisabled=1
