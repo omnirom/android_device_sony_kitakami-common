@@ -105,6 +105,7 @@ SNDRV_COMPRESS_SET_NEXT_TRACK_PARAM := true
 
 # We use stock camera blobs
 USE_CAMERA_STUB := true
+TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
 
 # Disable dex-preoptimization
 WITH_DEXPREOPT := false
