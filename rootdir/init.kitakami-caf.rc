@@ -134,9 +134,9 @@ on post-fs-data
 
     # SONY: Camera
     mkdir /data/camera 0770 media camera
-    chown media camera /sys/devices/sony_camera_0/info
+    chown cameraserver camera /sys/devices/sony_camera_0/info
     chmod 0770 /sys/devices/sony_camera_0/info
-    chown media camera /sys/devices/sony_camera_1/info
+    chown cameraserver camera /sys/devices/sony_camera_1/info
     chmod 0770 /sys/devices/sony_camera_1/info
 
     # Create directory used by bluetooth subsystem
