@@ -18,27 +18,37 @@
 <resources>
     <!-- Camera Preferences Picture size dialog box entries -->
     <string-array name="pref_camera_picturesize_entries" translatable="false">
-        <item>(4:3) 8.0 MP</item>
-        <item>(4:3) 5 MP</item>
-        <item>(4:3) 3.1 MP</item>
-        <item>(4:3) 1.9 MP</item>
+        <item>(4:3) 22.7 MP</item>
+        <item>(16:9) 19.5 MP</item>
         <item>(16:9) 8.3 MP</item>
-        <item>(16:9) 2.1 MP</item>
+        <item>(4:3) 8 MP</item>
+        <item>(4:3) 3.2 MP</item>
+        <item>(16:9) 2.7 MP</item>
         <item>(16:9) 0.9 MP</item>
-        <item>(Wide) 5.5 MP</item>
+        <item>(4:3) 0.3 MP</item>
+        <item>(4:3) 0.3 MP</item>
+	<item>(4:3) 0.15 MP</item>
+	<item>(4:3) 0.1 MP</item>
+	<item>(4:3) 0.08 MP</item>
+	<item>(4:3) 0.03 MP</item>
     </string-array>
     <!-- When launching the camera app first time, we will set the picture
          size to the first one in the list that is also supported by the
          driver -->
     <string-array name="pref_camera_picturesize_entryvalues" translatable="false">
-        <item>3264x2448</item>
-        <item>2592x1944</item>
-        <item>2048x1536</item>
-        <item>1600x1200</item>
+        <item>5504x4128</item>
+        <item>5888x3312</item>
         <item>3840x2160</item>
+        <item>3264x2448</item>
+        <item>2048x1536</item>
         <item>1920x1080</item>
         <item>1280x720</item>
-        <item>3264x1836</item>
+        <item>720x480</item>
+        <item>640x480</item>
+        <item>480x320</item>
+	<item>352x288</item>
+	<item>320x240</item>
+	<item>176x144</item>
     </string-array>
 
     <string-array name="pref_camera_scenemode_entries" translatable="false">
