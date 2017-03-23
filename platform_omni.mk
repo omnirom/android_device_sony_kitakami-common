@@ -21,6 +21,10 @@ include device/sony/kitakami-common/platform.mk
 PRODUCT_PACKAGES += \
     SnapdragonCamera
 
+# Sensor multihal
+PRODUCT_PACKAGES += \
+    sensors.msm8994
+
 # Copying files
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/twrp.fstab:recovery/root/etc/twrp.fstab

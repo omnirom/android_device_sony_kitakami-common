@@ -20,3 +20,9 @@ TARGET_QCOM_MEDIA_VARIANT := caf-msm8992
 
 # We use stock camera blobs
 USE_CAMERA_STUB := true
+
+# Multihal
+USE_SENSOR_MULTI_HAL := true
+
+#Camera
+TARGET_USES_MEDIA_EXTENSIONS := true
