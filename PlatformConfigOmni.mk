@@ -14,5 +14,9 @@
 
 include device/sony/kitakami-common/PlatformConfig.mk
 
+# We use caf hals for media / display
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8992
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8992
+
 # We use stock camera blobs
 USE_CAMERA_STUB := true

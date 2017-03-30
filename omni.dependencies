@@ -7,6 +7,18 @@
   },
   {
     "remote":       "omnirom",
+    "repository":   "android_hardware_qcom_display-caf-msm8992",
+    "target_path":  "hardware/qcom/display-caf-msm8992",
+    "revision":     "android-7.1"
+  },
+  {
+    "remote":       "omnirom",
+    "repository":   "android_hardware_qcom_media-caf-msm8992",
+    "target_path":  "hardware/qcom/media-caf-msm8992",
+    "revision":     "android-7.1"
+  },
+  {
+    "remote":       "omnirom",
     "repository":   "android_packages_apps_SnapdragonCamera",
     "target_path":  "packages/apps/SnapdragonCamera",
     "revision":     "android-7.1"
