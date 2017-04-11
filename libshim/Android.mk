@@ -1,4 +1,4 @@
-# Copyright (C) 2014 The Android Open Source Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,23 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-SONY_ROOT = device/sony/kitakami-common/rootdir
+LOCAL_PATH := $(call my-dir)
 
-# Common config
-include device/sony/kitakami-common/platform.mk
+include $(CLEAR_VARS)
 
-# Snapdragon Camera
-PRODUCT_PACKAGES += \
-    SnapdragonCamera
+LOCAL_SRC_FILES := wvm_shim.cpp
+LOCAL_SHARED_LIBRARIES := libstagefright_foundation
+LOCAL_MODULE := libshim_wvm
+LOCAL_MODULE_TAGS := optional
 
-# Sensor multihal
-PRODUCT_PACKAGES += \
-    sensors.msm8994
-
-# lib camera shim
-PRODUCT_PACKAGES += \
-    libshim_wvm
-
-# Copying files
-PRODUCT_COPY_FILES += \
-    $(SONY_ROOT)/twrp.fstab:recovery/root/etc/twrp.fstab
+include $(BUILD_SHARED_LIBRARY)
