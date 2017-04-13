@@ -21,10 +21,6 @@ include device/sony/kitakami-common/platform.mk
 PRODUCT_PACKAGES += \
     SnapdragonCamera
 
-# Shim libs
-PRODUCT_PACKAGES += \
-    libgui_shim
-
 # Copying files
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/twrp.fstab:recovery/root/etc/twrp.fstab
