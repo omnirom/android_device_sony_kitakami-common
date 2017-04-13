@@ -14,6 +14,9 @@
 
 SONY_ROOT = device/sony/kitakami-common/rootdir
 
+# kernel
+TARGET_KERNEL_SOURCE := kernel/sony/msm8994
+
 # Common config
 include device/sony/kitakami-common/platform.mk
 
