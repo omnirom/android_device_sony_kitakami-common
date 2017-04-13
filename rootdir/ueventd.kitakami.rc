@@ -130,6 +130,14 @@
 /sys/class/leds/lcd-backlight/max_brightness                            0644 root system
 /sys/class/leds/lcd-backlight/brightness                                0664 system system
 
+# Fingerprint sensor  device
+/sys/devices/soc/soc:fpc1145 hw_reset         0220 system input
+/sys/devices/soc/soc:fpc1145 pinctl_set       0220 system input
+/sys/devices/soc/soc:fpc1145 regulator_enable 0220 system input
+/sys/devices/soc/soc:fpc1145 spi_prepare      0220 system input
+/sys/devices/soc/soc:fpc1145 irq              0660 system input
+/sys/devices/soc/soc:fpc1145 wakeup_enable    0220 system input
+
 # Thermanager
 /sys/module/msm_performance/parameters/cpu_max_freq   0664 system system
 /sys/module/msm_performance/parameters/cpu_min_freq   0664 system system
