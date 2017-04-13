@@ -7,6 +7,12 @@
   },
   {
     "remote":       "omnirom",
+    "repository":   "android_kernel_sony_msm8994",
+    "target_path":  "kernel/sony/msm8994",
+    "revision":     "android-7.1"
+  },
+  {
+    "remote":       "omnirom",
     "repository":   "android_hardware_qcom_display-caf-msm8992",
     "target_path":  "hardware/qcom/display-caf-msm8992",
     "revision":     "android-7.1"
