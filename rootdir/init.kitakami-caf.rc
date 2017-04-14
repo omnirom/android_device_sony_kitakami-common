@@ -513,7 +513,7 @@ service uim /system/bin/brcm-uim-sysfs
 
 # Start Security Daemon
 service secd /system/vendor/bin/secd
-    setenv LD_PRELOAD /system/lib64/lib-preload64.so
+    setenv LD_PRELOAD /system/vendor/lib64/libpreload-me.so
     class main
     user system
     group system
