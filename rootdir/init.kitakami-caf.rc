@@ -746,3 +746,12 @@ on property:sys.shutdown.requested=*
 
 on property:dev.bootcomplete=1
     start startup-prober
+
+# Start Key Provision daemon
+service keyprovd /system/vendor/bin/keyprovd
+    class late_start
+    user system
+    group system
+    oneshot
+    seclabel u:r:keyprovd:s0
+    writepid /dev/cpuset/foreground/tasks
