@@ -753,6 +753,12 @@ service cnd /system/vendor/bin/cnd
     seclabel u:r:cnd:s0
     socket cnd stream 660 root inet
 
+service dpmd /system/vendor/bin/dpmd
+    class late_start
+    socket dpmd stream 660 root system
+    seclabel u:r:dpmd:s0
+    group system readproc
+
 # Start Key Provision daemon
 service keyprovd /system/vendor/bin/keyprovd
     class late_start
