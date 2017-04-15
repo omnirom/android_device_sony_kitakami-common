@@ -24,6 +24,10 @@ include device/sony/kitakami-common/platform.mk
 PRODUCT_PACKAGES += \
     SnapdragonCamera
 
+# qseecomd
+PRODUCT_COPY_FILES += \
+    $(SONY_ROOT)/system/bin/init.qcom.qseecomd.sh:system/bin/init.qcom.qseecomd.sh
+
 # Sensor multihal
 PRODUCT_PACKAGES += \
     sensors.msm8994
@@ -34,3 +38,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Copying files
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/twrp.fstab:recovery/root/etc/twrp.fstab
+
+# TWRP
+$(call inherit-product, device/sony/kitakami-common/twrp.mk)

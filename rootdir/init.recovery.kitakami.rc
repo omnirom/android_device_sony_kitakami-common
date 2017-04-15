@@ -1,6 +1,51 @@
+on early-init
+    mkdir /firmware 0771 system system
+    mkdir /persist 0771 system system
+
 on init
+    chmod 0664 /dev/qseecom
+    chown system drmrpc /dev/qseecom
+    chmod 0664 /dev/ion
+    chown system system /dev/ion
+
     symlink /dev/block/platform/soc.0/f9824900.sdhci /dev/block/bootdevice
+
+    wait /dev/block/bootdevice/by-name/cache
+    mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
+
+    wait /dev/block/bootdevice/by-name/persist
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
+    restorecon_recursive /persist
+    mkdir /persist/data 0700 system system
+
+    wait /dev/block/bootdevice/by-name/modem
+    mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0
+
+    start pulldecryptfiles
+
+on post-fs-data
+    mkdir /data/property
 
 on boot
     write /sys/class/android_usb/android0/idVendor 0FCE
     write /sys/class/android_usb/android0/idProduct 6${ro.usb.pid_suffix}
+
+service pulldecryptfiles /sbin/pulldecryptfiles.sh
+    core
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
+service sbinqseecomd /sbin/qseecomd
+    late_start
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
+on property:ro.crypto.state=encrypted
+    wait /sbin/qseecomd
+    start sbinqseecomd
