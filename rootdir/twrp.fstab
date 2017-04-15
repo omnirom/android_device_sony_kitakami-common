@@ -1,8 +1,11 @@
 # mount point    fstype    device            [device2]   fstype2
-/boot           emmc    /dev/block/bootdevice/by-name/boot
+/boot           emmc    /dev/block/bootdevice/by-name/boot                             flags=backup=1
 /system         ext4    /dev/block/bootdevice/by-name/system
 /cache          ext4    /dev/block/bootdevice/by-name/cache
-/data           ext4    /dev/block/bootdevice/by-name/userdata                         length=-16384
+/data           ext4    /dev/block/bootdevice/by-name/userdata                         flags=encryptable=footer;length=-16384
+/persist        ext4    /dev/block/bootdevice/by-name/persist                          flags=display="Persist"
+/dsp            ext4    /dev/block/bootdevice/by-name/dsp
+/firmware       vfat    /dev/block/bootdevice/by-name/modem
 
 /external_sd    vfat    /dev/block/mmcblk1p1                                           flags=display="Micro SDcard";storage;wipeingui;removable
 /usb-otg        vfat    /devices/soc.0/f9200000.ssusb/f9200000.dwc3/xhci-hcd.0.auto    flags=display="USB OTG";storage;wipeingui;removable

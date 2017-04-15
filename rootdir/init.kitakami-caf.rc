@@ -68,13 +68,26 @@ on init
     write /proc/sys/vm/swappiness 100
 
 on fs
-    mount_all ./fstab.kitakami
+    mount_all ./fstab.kitakami  --early
     swapon_all ./fstab.kitakami
 
+on post-fs
+    start qseecomd
+    # busy loop to wait for qseecomd started
+    exec - root root system -- /system/bin/init.qcom.qseecomd.sh
+
+on late-fs
     restorecon_recursive /persist
     write /sys/kernel/boot_adsp/boot 1
 
+
+    # mount RW partitions which need run fsck
+    mount_all ./fstab.kitakami --late
+
 on post-fs-data
+    # restart qseecomd once we have /data/
+    restart qseecomd
+
     # Secd
     mkdir /data/credmgr 0770 system credmgr_client
     mkdir /idd/lost+found 0770 root root
@@ -642,6 +655,12 @@ service qseecomd /system/vendor/bin/qseecomd
     group root
     writepid /dev/cpuset/system-background/tasks
 
+service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
+    class late_start
+    user system
+    group system
+    writepid /dev/cpuset/system-background/tasks
+
 # OSS thermal management
 service thermanager /system/bin/thermanager /system/etc/thermanager.xml
     class main
@@ -717,6 +736,10 @@ service ril-daemon /system/bin/rild
     user root
     group radio cache inet misc audio log readproc wakelock qcom_diag drmrpc trimarea
 
+on property:vold.decrypt=trigger_restart_framework
+    setprop vold.encrypt_progress ""
+    start timekeep
+
 on property:persist.radio.multisim.config=dsds
     enable ril-daemon2
 
@@ -767,3 +790,6 @@ service keyprovd /system/vendor/bin/keyprovd
     oneshot
     seclabel u:r:keyprovd:s0
     writepid /dev/cpuset/foreground/tasks
+
+on property:vold.decrypt=trigger_restart_min_framework
+    restart timekeep
