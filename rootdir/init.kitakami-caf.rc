@@ -748,6 +748,11 @@ on property:sys.shutdown.requested=*
 on property:dev.bootcomplete=1
     start startup-prober
 
+service cnd /system/vendor/bin/cnd
+    class main
+    seclabel u:r:cnd:s0
+    socket cnd stream 660 root inet
+
 # Start Key Provision daemon
 service keyprovd /system/vendor/bin/keyprovd
     class late_start
