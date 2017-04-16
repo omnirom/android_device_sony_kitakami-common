@@ -4,7 +4,6 @@
 /cache          ext4    /dev/block/bootdevice/by-name/cache
 /data           ext4    /dev/block/bootdevice/by-name/userdata                         flags=encryptable=footer;length=-16384
 /persist        ext4    /dev/block/bootdevice/by-name/persist                          flags=display="Persist"
-/dsp            ext4    /dev/block/bootdevice/by-name/dsp
 /firmware       vfat    /dev/block/bootdevice/by-name/modem
 
 /external_sd    vfat    /dev/block/mmcblk1p1                                           flags=display="Micro SDcard";storage;wipeingui;removable
