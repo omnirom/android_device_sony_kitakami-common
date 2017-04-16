@@ -769,6 +769,8 @@ on property:sys.shutdown.requested=*
 
 on property:dev.bootcomplete=1
     start startup-prober
+    # Change from 4 to 1 for better memory performance.
+    write /proc/sys/vm/min_free_order_shift 1
 
 service cnd /system/vendor/bin/cnd
     class main
