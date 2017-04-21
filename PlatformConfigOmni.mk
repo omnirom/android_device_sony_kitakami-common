@@ -15,6 +15,7 @@
 include device/sony/kitakami-common/PlatformConfig.mk
 
 # We use caf hals for media / display
+BOARD_USES_QCOM_HARDWARE := true
 TARGET_QCOM_DISPLAY_VARIANT := caf-msm8992
 TARGET_QCOM_MEDIA_VARIANT := caf-msm8992
 
