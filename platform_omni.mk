@@ -24,6 +24,15 @@ TARGET_QCOM_AUDIO_VARIANT := caf-msm8992
 BOARD_USES_ADRENO := true
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno418.
 
+# CNE
+BOARD_USES_QCNE := true
+
+# We use stock camera blobs
+USE_CAMERA_STUB := true
+
+# cryptfs hw
+TARGET_HW_DISK_ENCRYPTION := true
+
 # kernel
 TARGET_KERNEL_SOURCE := kernel/sony/msm8994
 
@@ -59,6 +68,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Copying files
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/twrp.fstab:recovery/root/etc/twrp.fstab
+
+# CNE / DPM
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.cne.feature=1 \
+    persist.dpm.feature=1
 
 # TWRP
 $(call inherit-product, device/sony/kitakami-common/twrp.mk)

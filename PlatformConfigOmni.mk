@@ -20,9 +20,6 @@ USE_CAMERA_STUB := true
 # Multihal
 USE_SENSOR_MULTI_HAL := true
 
-# cryptfs hw
-TARGET_HW_DISK_ENCRYPTION := true
-
 #Camera
 TARGET_USES_MEDIA_EXTENSIONS := true
 
