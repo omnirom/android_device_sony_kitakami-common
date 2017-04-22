@@ -39,6 +39,19 @@ TARGET_KERNEL_SOURCE := kernel/sony/msm8994
 # Common config
 include device/sony/kitakami-common/platform.mk
 
+# OMX
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libextmedia_jni \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxCore \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libOmxVdec \
+    libOmxVenc \
+    libstagefrighthw
+
 # Snapdragon Camera
 PRODUCT_PACKAGES += \
     SnapdragonCamera
