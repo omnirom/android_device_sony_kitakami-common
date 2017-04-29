@@ -578,7 +578,7 @@ service uim /system/bin/brcm-uim-sysfs
 # Start Security Daemon
 service secd /system/vendor/bin/secd
     setenv LD_PRELOAD /system/vendor/lib64/libpreload-me.so
-    class main
+    class late_start
     user system
     group system
     socket secd_ebl_sock stream 0660 system credmgr_client
@@ -846,3 +846,29 @@ service keyprovd /system/vendor/bin/keyprovd
 
 on property:vold.decrypt=trigger_restart_min_framework
     restart timekeep
+
+service ppd /system/vendor/bin/mm-pp-daemon
+    class late_start
+    disabled
+    user system
+    socket pps stream 0660 system system
+    seclabel u:r:ppd:s0
+    group system graphics
+
+on property:init.svc.surfaceflinger=stopped
+    stop ppd
+
+on property:init.svc.surfaceflinger=running
+    start ppd
+
+on property:init.svc.surfaceflinger=restarting
+    stop ppd
+
+on property:init.svc.zygote=stopped
+    stop ppd
+
+on property:init.svc.zygote=running
+    start ppd
+
+on property:init.svc.zygote=restarting
+    stop ppd
