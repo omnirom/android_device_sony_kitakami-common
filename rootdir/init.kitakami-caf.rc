@@ -163,6 +163,14 @@ on post-fs-data
 
     restorecon_recursive /idd
 
+    # qti-logkit data
+    mkdir /data/misc/qti-logkit/ 0771 system system
+    mkdir /data/misc/qti-logkit/shared-privileged/ 2770 system system
+    mkdir /data/misc/qti-logkit/shared-public/ 2770 system qcom_diag
+    mkdir /data/misc/qti-logkit/socket-privileged/ 2770 system system
+    mkdir /data/misc/qti-logkit/socket-public/ 2750 system qcom_diag
+    mkdir /data/misc/qti-logkit/logdata/ 2750 system shell
+
     # SONY: Camera
     mkdir /data/camera 0770 media camera
     chown cameraserver camera /sys/devices/sony_camera_0/info
@@ -559,6 +567,41 @@ service fingerprintd /system/bin/fingerprintd
     user system
     group input
     writepid /dev/cpuset/system-background/tasks
+
+service ipacm-diag /system/vendor/bin/ipacm-diag
+    class main
+    user system
+    socket ipacm_log_file dgram 660 system net_admin
+    group net_admin qcom_diag
+    disabled
+
+service ipacm /system/vendor/bin/ipacm
+    class main
+    user net_admin
+    group net_admin inet
+    disabled
+
+service qti /system/vendor/bin/qti
+    class main
+    user radio
+    group radio net_raw qcom_diag usb net_admin
+    disabled
+
+# service for USERDEBUG
+service LKCore-dbg /system/vendor/bin/LKCore
+    class late_start
+    oneshot
+    disabled
+    user root
+    group root system log qcom_diag
+
+# service for USER
+service LKCore-rel /system/vendor/bin/LKCore
+    class late_start
+    oneshot
+    disabled
+    user system
+    group system log qcom_diag
 
 service msm_irqbalance /system/vendor/bin/msm_irqbalance -f /system/etc/msm_irqbalance.conf
     socket msm_irqbalance seqpacket 660 root system
