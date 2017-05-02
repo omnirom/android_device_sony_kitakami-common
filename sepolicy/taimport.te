@@ -1,0 +1,19 @@
+type taimport, domain, domain_deprecated;
+type taimport_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(taimport)
+
+allow taimport self:capability {
+    dac_override
+    net_raw
+    net_admin
+    setuid
+    setgid
+    chown
+    fsetid
+};
+
+allow taimport init:unix_stream_socket { connectto };
+allow taimport taimport_exec:file { getattr read };
+allow taimport property_socket:sock_file { write };

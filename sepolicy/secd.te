@@ -1,0 +1,26 @@
+type secd, domain, domain_deprecated;
+type secd_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(secd)
+
+# Connect to /dev/socket/tad
+unix_socket_connect(secd, tad, tad)
+
+# Connect to /idd/socket
+allow secd idd_socket:dir rw_dir_perms;
+allow secd idd_socket:sock_file rw_file_perms;
+allow secd idd:unix_dgram_socket { sendto };
+unix_socket_connect(secd, idd, idd)
+
+# Read /proc/stat
+allow secd proc:file r_file_perms;
+
+allow secd tee_device:chr_file rw_file_perms;
+
+allow secd secd_data_file:file create_file_perms;
+allow secd secd_data_file:dir create_dir_perms;
+
+allow secd idd_file:file create_file_perms;
+allow secd idd_file:dir { create_dir_perms search };
+

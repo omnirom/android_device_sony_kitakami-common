@@ -1,0 +1,42 @@
+# Define debugfs for rmt storage
+type debugfs_rmt_storage, fs_type, debugfs_type;
+
+type tad_socket, file_type;
+type ta_data_file, file_type;
+
+type proc_kernel_sched, fs_type;
+
+type acdb_data_file, file_type, data_file_type;
+
+type sysfs_addrsetup, fs_type, sysfs_type;
+type sysfs_fingerprintd_writable, fs_type, sysfs_type;
+type sysfs_performance, sysfs_type, fs_type;
+type sysfs_power_management, fs_type, sysfs_type;
+type sysfs_pronto, fs_type, sysfs_type;
+type sysfs_rmt_storage, fs_type, sysfs_type;
+type sysfs_subsys, sysfs_type, fs_type;
+type sysfs_timekeep, fs_type, sysfs_type;
+type sysfs_video, fs_type, sysfs_type;
+
+# BRCM BT FM
+type brcm_ldisc_sysfs, sysfs_type, fs_type;
+type brcm_uim_exec, exec_type, file_type;
+
+# idd /rca
+type idd_socket, file_type;
+type idd_file, file_type;
+type idd_data_file, file_type, data_file_type;
+type idd_lostfound_file, file_type;
+type misc_file, file_type;
+type misc_lostfound_file, file_type;
+
+# secd
+type secd_socket, file_type;
+type secd_data_file, file_type, data_file_type;
+
+# taimport
+type taimport_data_file, file_type, data_file_type;
+
+# ppd
+type ppd_data_file, file_type, data_file_type;
+

@@ -1,0 +1,15 @@
+allow fingerprintd sysfs_fingerprintd_writable:file rw_file_perms;
+allow fingerprintd tee_device:chr_file rw_file_perms;
+allow fingerprintd sysfs:file w_file_perms;
+
+r_dir_file(fingerprintd, input_device)
+allow fingerprintd input_device:chr_file { read open ioctl };
+
+allow fingerprintd fingerprintd_data_file:dir create_dir_perms;
+allow fingerprintd fingerprintd_data_file:file create_file_perms;
+allow fingerprintd fingerprintd_data_file:sock_file { create unlink };
+
+allow fingerprintd idd_file:dir create_dir_perms;
+allow fingerprintd idd_socket:dir { search };
+allow fingerprintd idd_socket:sock_file create_file_perms;
+allow fingerprintd idd:unix_dgram_socket { sendto };

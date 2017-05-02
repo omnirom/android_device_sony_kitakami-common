@@ -1,0 +1,22 @@
+binder_call(audioserver, rild)
+binder_call(rild, audioserver)
+binder_call(rild, mediaserver)
+binder_service(rild)
+
+qmux_socket(rild);
+
+allow rild sysfs_pronto:file r_file_perms;
+allow rild { audioserver_service mediaserver_service }:service_manager find;
+
+r_dir_file(rild, sysfs_socinfo)
+r_dir_file(rild, sysfs_subsys)
+
+allow rild tee_device:chr_file { read write open ioctl };
+allow rild idd_socket:dir { search };
+allow rild idd_file:dir create_dir_perms;
+allow rild idd_socket:sock_file { write };
+allow rild idd:unix_dgram_socket { sendto };
+
+allow rild persist_file:dir create_dir_perms;
+
+unix_socket_connect(rild, tad, tad)

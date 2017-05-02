@@ -1,0 +1,10 @@
+allow system_server { persist_file system_app_data_file }:dir { open read search };
+allow system_server persist_file:file { getattr open write };
+allow system_server xlat_prop:file { getattr open read };
+
+r_dir_file(system_server, sysfs_addrsetup)
+r_dir_file(system_server, sysfs_pronto)
+r_dir_file(system_server, sysfs_socinfo)
+r_dir_file(system_server, sysfs_subsys)
+
+allow system_server fingerprintd_data_file:sock_file rw_file_perms;

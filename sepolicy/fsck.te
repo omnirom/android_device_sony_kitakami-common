@@ -1,0 +1,4 @@
+allow fsck urandom_device:file getattr;
+allow fsck idd_block_device:blk_file { rw_file_perms };
+allow fsck misc_block_device:blk_file { rw_file_perms };
+allow fsck cache_block_device:blk_file { rw_file_perms };
