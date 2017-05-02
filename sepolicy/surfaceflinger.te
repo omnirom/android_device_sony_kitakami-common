@@ -1,0 +1,3 @@
+rw_dir_file(surfaceflinger, sysfs_graphics)
+
+allow surfaceflinger persist_display_file:dir { search };

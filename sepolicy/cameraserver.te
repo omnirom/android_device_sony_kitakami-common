@@ -1,0 +1,16 @@
+allow cameraserver rootfs:lnk_file getattr;
+
+allow cameraserver sysfs:file rw_file_perms;
+
+allow cameraserver system_server:unix_stream_socket read;
+
+allow cameraserver mm-qcamerad:unix_stream_socket { read connectto };
+
+allow cameraserver sensorservice_service:service_manager { find };
+
+allow cameraserver idd_file:dir create_dir_perms;
+allow cameraserver idd_socket:sock_file { rw_file_perms };
+allow cameraserver idd_socket:dir { rw_dir_perms };
+allow cameraserver idd:unix_dgram_socket { sendto };
+
+unix_socket_connect(cameraserver, secd, secd)

@@ -13,6 +13,12 @@
   },
   {
     "remote":       "omnirom",
+    "repository":   "android_device_qcom_caf-sepolicy",
+    "target_path":  "device/qcom/sepolicy",
+    "revision":     "android-7.1"
+  },
+  {
+    "remote":       "omnirom",
     "repository":   "android_hardware_qcom_display-caf-msm8992",
     "target_path":  "hardware/qcom/display-caf-msm8992",
     "revision":     "android-7.1"

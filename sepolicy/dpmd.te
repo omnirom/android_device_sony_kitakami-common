@@ -1,0 +1,23 @@
+allow dpmd self:capability {
+    dac_override
+    net_raw
+    net_admin
+    setuid
+    setgid
+    chown
+    fsetid
+};
+
+allow dpmd property_socket:sock_file create_file_perms;
+allow dpmd init:unix_stream_socket connectto;
+
+allow dpmd self:netlink_route_socket { create bind write nlmsg_read read };
+allow dpmd self:udp_socket { create ioctl };
+allow dpmd socket_device:dir { rw_dir_perms add_name };
+allow dpmd socket_device:sock_file create_file_perms;
+allow dpmd proc_net:file create_file_perms;
+
+allow dpmd sysfs_subsys:file r_file_perms;
+allow dpmd sysfs_pronto:file r_file_perms;
+
+allow dpmd sysfs_wake_lock:file create_file_perms;

@@ -1,0 +1,3 @@
+r_dir_file(qmuxd, sysfs_pronto)
+r_dir_file(qmuxd, sysfs_socinfo)
+r_dir_file(qmuxd, sysfs_subsys)

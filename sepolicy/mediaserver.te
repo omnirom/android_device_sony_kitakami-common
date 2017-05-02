@@ -1,0 +1,14 @@
+allow mediaserver camera_data_file:dir search;
+allow mediaserver mm-qcamerad:unix_dgram_socket sendto;
+
+allow mediaserver cameraserver_service:service_manager add;
+allow mediaserver cameraproxy_service:service_manager find;
+
+qmux_socket(mediaserver)
+
+# stock cam
+unix_socket_connect(mediaserver, secd, secd)
+allow mediaserver system_server:unix_stream_socket read;
+allow mediaserver mm-qcamerad:unix_stream_socket connectto;
+allow mediaserver sysfs:file rw_file_perms;
+allow mediaserver sensorservice_service:service_manager find;

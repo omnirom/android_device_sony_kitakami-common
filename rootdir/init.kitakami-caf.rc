@@ -893,7 +893,7 @@ service ppd /system/vendor/bin/mm-pp-daemon
     disabled
     user system
     socket pps stream 0660 system system
-    seclabel u:r:ppd:s0
+    seclabel u:r:mm-pp-daemon:s0
     group system graphics
 
 on property:init.svc.surfaceflinger=stopped
