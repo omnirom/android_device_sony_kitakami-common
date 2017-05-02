@@ -1,0 +1,5 @@
+type subsys_modem_device, dev_type;
+type trim_area_partition_device, dev_type;
+type persist_block_device, dev_type;
+type idd_block_device, dev_type;
+

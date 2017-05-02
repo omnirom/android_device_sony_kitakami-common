@@ -1,0 +1,14 @@
+type updatemiscta, domain, domain_deprecated;
+type updatemiscta_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(updatemiscta)
+
+# Connect to /dev/socket/tad
+unix_socket_connect(updatemiscta, tad, tad)
+
+# Connect to /idd/socket
+unix_socket_connect(updatemiscta, idd, idd)
+
+# Connect to /dev/socket/property
+unix_socket_connect(updatemiscta, property, init)

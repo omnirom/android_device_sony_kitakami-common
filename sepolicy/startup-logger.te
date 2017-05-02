@@ -1,0 +1,22 @@
+# startup-logger
+type startup-logger, domain, domain_deprecated;
+type startup-logger_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(startup-logger)
+
+# Connect to /dev/socket/tad
+unix_socket_connect(startup-logger, tad, tad)
+
+allow startup-logger self:capability {
+    dac_read_search
+    dac_override
+    net_admin
+    setgid
+    setuid
+    sys_nice
+};
+
+allow startup-logger dpmd_exec:file { getattr read open };
+allow startup-logger idd_file:dir { create_dir_perms search };
+allow startup-logger idd_file:file { create_file_perms };

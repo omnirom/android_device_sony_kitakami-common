@@ -1,0 +1,31 @@
+type keyprovd, domain, domain_deprecated;
+type keyprovd_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(keyprovd)
+
+allow keyprovd self:capability {
+    dac_override
+    net_raw
+    net_admin
+    setuid
+    setgid
+    chown
+    fsetid
+};
+
+unix_socket_connect(keyprovd, tad, tad)
+unix_socket_connect(keyprovd, secd, secd)
+
+set_prop(keyprovd, keyprovd_prop)
+
+allow keyprovd property_socket:sock_file create_file_perms;
+allow keyprovd socket_device:dir { rw_dir_perms add_name };
+allow keyprovd socket_device:sock_file create_file_perms;
+
+allow keyprovd sysfs_subsys:file r_file_perms;
+
+allow keyprovd tee_device:chr_file rw_file_perms;
+allow keyprovd tee_prop:file { read open getattr };
+
+allow keyprovd init:unix_stream_socket { connectto };

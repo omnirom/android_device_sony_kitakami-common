@@ -1,0 +1,7 @@
+type tee_prop, property_type;
+type timekeep_prop, property_type;
+
+type adbtcpes_prop, property_type;
+
+type keyprovd_prop, property_type;
+

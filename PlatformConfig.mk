@@ -88,6 +88,9 @@ BOARD_HAVE_BCM_FM := true
 TARGET_SYSTEM_PROP += $(PLATFORM_COMMON_PATH)/system.prop
 
 # SELinux
+ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+include device/qcom/sepolicy/sepolicy.mk
+endif
 BOARD_SEPOLICY_DIRS += $(PLATFORM_COMMON_PATH)/sepolicy
 
 include device/sony/common/CommonConfigOmni.mk

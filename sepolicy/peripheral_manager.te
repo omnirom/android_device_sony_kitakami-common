@@ -1,0 +1,7 @@
+# Needed by ipc_router
+allow per_mgr self:capability net_raw;
+
+allow per_mgr subsys_modem_device:chr_file { open read };
+
+r_dir_file(per_mgr, sysfs_pronto)
+r_dir_file(per_mgr, sysfs_subsys)

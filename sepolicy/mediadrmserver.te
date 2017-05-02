@@ -1,0 +1,3 @@
+allow mediadrmserver rootfs:lnk_file getattr;
+unix_socket_connect(mediadrmserver, tad, tad)
+unix_socket_connect(mediadrmserver, secd, secd)

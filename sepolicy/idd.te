@@ -1,0 +1,24 @@
+type idd, domain, domain_deprecated;
+type idd_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(idd)
+
+# Connect to /dev/socket/tad
+unix_socket_connect(idd, tad, tad)
+
+# Read /proc/stat
+allow idd proc:file r_file_perms;
+
+allow idd idd_file:file create_file_perms;
+allow idd idd_file:dir create_dir_perms;
+allow idd idd_socket:file create_file_perms;
+allow idd idd_socket:dir create_dir_perms;
+allow idd idd_socket:sock_file { write create getattr setattr unlink };
+allow idd idd_socket:dir create_dir_perms;
+
+allow idd misc_file:file create_file_perms;
+allow idd misc_file:dir create_dir_perms;
+
+allow idd logdr_socket:sock_file write;
+allow idd logd:unix_stream_socket connectto;

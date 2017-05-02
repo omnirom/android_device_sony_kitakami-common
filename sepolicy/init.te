@@ -1,0 +1,31 @@
+#For sdcard
+allow init tmpfs:file create_file_perms;
+allow init tmpfs:dir create_dir_perms;
+
+allow init proc_kernel_sched:file write;
+
+allow init persist_file:dir mounton;
+allow init debugfs:file w_file_perms;
+allow init sysfs:dir w_dir_perms;
+
+#FM BCM
+allow init hci_attach_dev:chr_file rw_file_perms;
+allow init brcm_uim_exec:file { execute getattr read open };
+allow init brcm_ldisc_sysfs:lnk_file { read };
+allow init uim:process { siginh noatsecure transition rlimitinh };
+
+allow init taimport_exec:file { execute read open  };
+allow init trim_area_partition_device:blk_file setattr;
+allow init idd_file:dir { mounton };
+allow init misc_file:dir { mounton };
+allow init socket_device:sock_file { create setattr getattr unlink };
+
+allow init startup-logger:process { rlimitinh siginh noatsecure };
+allow init taimport:process { rlimitinh siginh noatsecure };
+
+domain_auto_trans(init, startup-logger_exec, startup-logger)
+domain_auto_trans(init, taimport_exec, taimport)
+
+unix_socket_connect(init, secd, secd)
+allow init self:capability { sys_module };
+allow init kernel:key { search };

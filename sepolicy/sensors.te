@@ -1,0 +1,12 @@
+allow sensors self:capability {
+    net_raw
+};
+
+allow sensors self:socket { bind create ioctl read write };
+
+r_dir_file(sensors, sysfs_pronto)
+r_dir_file(sensors, sysfs_socinfo)
+r_dir_file(sensors, sysfs_subsys)
+r_dir_file(sensors, system_file)
+
+unix_socket_connect(sensors, tad, tad)
