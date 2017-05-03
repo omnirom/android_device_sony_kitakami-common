@@ -68,6 +68,10 @@ PRODUCT_PACKAGES += \
     rcscommon \
     rcscommon.xml
 
+# Media
+PRODUCT_COPY_FILES += \
+    $(SONY_ROOT)/system/etc/media_codecs_performance.xml:system/etc/media_codecs_performance.xml
+
 # qseecomd
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/bin/init.qcom.qseecomd.sh:system/bin/init.qcom.qseecomd.sh
