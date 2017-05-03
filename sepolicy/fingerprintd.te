@@ -7,7 +7,7 @@ allow fingerprintd input_device:chr_file { read open ioctl };
 
 allow fingerprintd fingerprintd_data_file:dir create_dir_perms;
 allow fingerprintd fingerprintd_data_file:file create_file_perms;
-allow fingerprintd fingerprintd_data_file:sock_file { create unlink };
+allow fingerprintd fingerprintd_data_file:sock_file { create unlink write };
 
 allow fingerprintd idd_file:dir create_dir_perms;
 allow fingerprintd idd_socket:dir { search };
