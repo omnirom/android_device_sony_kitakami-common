@@ -32,6 +32,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     sensors.msm8994
 
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio_policy.msm8994 \
+    audio.r_submix.default \
+    audio.usb.default \
+    audio_amplifier.msm8994
+
+# Audio configuration file
+-include hardware/qcom/audio-caf-msm8992/configs/msm8994/msm8994.mk
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so
 
