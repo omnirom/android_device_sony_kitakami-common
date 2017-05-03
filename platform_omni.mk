@@ -39,10 +39,15 @@ TARGET_KERNEL_SOURCE := kernel/sony/msm8994
 # Common config
 include device/sony/kitakami-common/platform.mk
 
+# IPA
 PRODUCT_PACKAGES += \
     ipacm \
     ipacm-diag \
     IPACM_cfg.xml
+
+# Fingerprint
+PRODUCT_PACKAGES += \
+    fingerprintd
 
 # OMX
 PRODUCT_PACKAGES += \
