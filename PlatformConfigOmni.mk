@@ -18,6 +18,7 @@ include device/sony/kitakami-common/PlatformConfig.mk
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_QCOM_DISPLAY_VARIANT := caf-msm8992
 TARGET_QCOM_MEDIA_VARIANT := caf-msm8992
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8992
 
 # We use stock camera blobs
 USE_CAMERA_STUB := true
