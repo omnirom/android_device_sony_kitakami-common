@@ -52,3 +52,6 @@ persist.hwc.enable_vds=1
 
 #enable voice path for PCM VoIP by default
 use.voice.path.for.pcm.voip=true
+
+# Data modules
+persist.data.mode=concurrent
