@@ -14,6 +14,12 @@
 
 SONY_ROOT = device/sony/kitakami-common/rootdir
 
+# We use caf hals for media / display and audio
+BOARD_USES_QCOM_HARDWARE := true
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8992
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8992
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8992
+
 # kernel
 TARGET_KERNEL_SOURCE := kernel/sony/msm8994
 
