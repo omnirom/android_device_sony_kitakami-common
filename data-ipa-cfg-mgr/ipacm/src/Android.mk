@@ -5,7 +5,12 @@ include $(CLEAR_VARS)
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../src
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../inc
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../ipanat/inc
+ifeq ($(call is-platform-sdk-version-at-least,20),true)
 LOCAL_C_INCLUDES += external/icu/icu4c/source/common
+else
+LOCAL_C_INCLUDES += external/icu4c/common
+endif
+LOCAL_C_INCLUDES += external/dhcpcd
 LOCAL_C_INCLUDES += external/libxml2/include
 LOCAL_C_INCLUDES += external/libnetfilter_conntrack/include
 LOCAL_C_INCLUDES += external/libnfnetlink/include
@@ -16,18 +21,12 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_CFLAGS := -v
 LOCAL_CFLAGS += -DFEATURE_IPA_ANDROID
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 LOCAL_CFLAGS += -DDEBUG
-endif
 
-ifeq ($(TARGET_BOARD_PLATFORM),msm8998)
-LOCAL_CFLAGS += -DFEATURE_IPA_V3
+ifeq ($(TARGET_ARCH),arm)
+LOCAL_CFLAGS += -include bionic/libc/kernel/arch-arm/asm/posix_types.h
+LOCAL_CFLAGS += -include bionic/libc/kernel/arch-arm/asm/byteorder.h
 endif
-
-filetoadd = bionic/libc/kernel/arch-arm/asm/posix_types.h
-LOCAL_CFLAGS += $(shell if [ -a $(filetoadd) ] ; then echo -include $(filetoadd) ; fi ;)
-filetoadd = bionic/libc/kernel/arch-arm/asm/byteorder.h
-LOCAL_CFLAGS += $(shell if [ -a $(filetoadd) ] ; then echo -include $(filetoadd) ; fi ;)
 
 LOCAL_SRC_FILES := IPACM_Main.cpp \
 		IPACM_EvtDispatcher.cpp \
@@ -50,13 +49,13 @@ LOCAL_SRC_FILES := IPACM_Main.cpp \
                 IPACM_Log.cpp
 
 LOCAL_MODULE := ipacm
-LOCAL_CLANG := false
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SHARED_LIBRARIES := libipanat
 LOCAL_SHARED_LIBRARIES += libxml2
 LOCAL_SHARED_LIBRARIES += libnfnetlink
 LOCAL_SHARED_LIBRARIES += libnetfilter_conntrack
+LOCAL_CLANG := true
 include $(BUILD_EXECUTABLE)
 
 ################################################################################
