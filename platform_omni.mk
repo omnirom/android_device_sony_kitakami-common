@@ -86,10 +86,40 @@ PRODUCT_PACKAGES += \
     audio_policy.msm8994 \
     audio.r_submix.default \
     audio.usb.default \
-    audio_amplifier.msm8994
+    audio_amplifier.msm8994 \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    libqcompostprocbundle
 
-# Audio configuration file
--include hardware/qcom/audio-caf-msm8992/configs/msm8994/msm8994.mk
+# Reduce client buffer size for fast audio output tracks
+PRODUCT_PROPERTY_OVERRIDES += \
+    af.fast_track_multiplier=1
+
+# Low latency audio buffer size in frames
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio_hal.period_size=192
+
+# Audio configuration files
+PRODUCT_COPY_FILES += \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_policy.conf:system/etc/audio_policy.conf \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/mixer_paths.xml:system/etc/mixer_paths.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/listen_platform_info.xml:system/etc/listen_platform_info.xml
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:/system/etc/a2dp_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:/system/etc/audio_policy_volumes.xml \
+    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
+    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so
