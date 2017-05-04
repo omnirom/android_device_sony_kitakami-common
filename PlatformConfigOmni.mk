@@ -46,3 +46,6 @@ TARGET_USES_MEDIA_EXTENSIONS := true
 
 #BCM BT/FM
 BOARD_HAVE_BCM_FM_SYSFS := "/sys/bus/platform/drivers/bcm43xx_bluetooth/bcm43xx.81/"
+
+# Do not build keymaster
+TARGET_PROVIDES_KEYMASTER := true
