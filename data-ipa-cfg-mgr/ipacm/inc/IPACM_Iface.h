@@ -150,6 +150,11 @@ public:
 	/* software routing disable */
 	virtual int handle_software_routing_disable(void);
 
+	/* used to get filtering rule index in table */
+	int flt_rule_count_v4;
+
+	int flt_rule_count_v6;
+
 private:
 
 	static const char *DEVICE_NAME;
