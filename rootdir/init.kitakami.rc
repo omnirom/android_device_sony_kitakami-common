@@ -210,6 +210,9 @@ on post-fs-data
 
     restorecon_recursive /idd
 
+    # SONY: Create a dir for apfd script files
+    mkdir /data/system/apfd 0770 system system
+
     # qti-logkit data
     mkdir /data/misc/qti-logkit/ 0771 system system
     mkdir /data/misc/qti-logkit/shared-privileged/ 2770 system system
@@ -626,7 +629,7 @@ service ipacm-diag /system/vendor/bin/ipacm-diag
     group net_admin qcom_diag
     disabled
 
-service ipacm /system/vendor/bin/ipacm
+service ipacm /system/bin/ipacm
     class main
     user net_admin
     group net_admin inet
@@ -637,6 +640,58 @@ service qti /system/vendor/bin/qti
     user radio
     group radio net_raw qcom_diag usb net_admin
     disabled
+
+service adsprpcd /system/vendor/bin/adsprpcd
+   class main
+   user media
+   group media
+   seclabel u:r:adsprpcd:s0
+
+service imsqmidaemon /system/vendor/bin/imsqmidaemon
+    class main
+    user system
+    socket ims_qmid stream 0660 system radio
+    group radio log diag
+    seclabel u:r:ims:s0
+    writepid /dev/cpuset/system-background/tasks
+
+service imsdatadaemon /system/vendor/bin/imsdatadaemon
+    class main
+    user system
+    socket ims_datad stream 0660 system radio
+    group system wifi radio inet log diag
+    disabled
+    seclabel u:r:ims:s0
+    writepid /dev/cpuset/system-background/tasks
+
+on property:sys.ims.QMI_DAEMON_STATUS=1
+    start imsdatadaemon
+
+service ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
+    class main
+    user system
+    socket ims_rtpd stream 0660 system radio
+    group radio net_raw diag inet log
+    seclabel u:r:ims:s0
+    disabled
+
+service imscmservice /system/vendor/bin/imscmservice
+    class main
+    user system
+    group radio net_raw diag diag log
+    seclabel u:r:imscm:s0
+    writepid /dev/cpuset/system-background/tasks
+    disabled
+
+on property:sys.ims.DATA_DAEMON_STATUS=1
+    start ims_rtp_daemon
+    start imscmservice
+
+service tftp_server /system/vendor/bin/tftp_server
+   class core
+   user root
+   seclabel u:r:rfs_access:s0
+   writepid /dev/cpuset/system-background/tasks
 
 # service for USERDEBUG
 service LKCore-dbg /system/vendor/bin/LKCore
@@ -926,6 +981,19 @@ on property:dev.bootcomplete=1
     start startup-prober
     # Change from 4 to 1 for better memory performance.
     write /proc/sys/vm/min_free_order_shift 1
+
+# Native daemon for PacketFilter
+service apfd /system/vendor/bin/apfd
+    class main
+    socket apfd_socket stream 0660 root system
+    group system
+    seclabel u:r:apfd:s0
+
+# gtsconfd
+service gtsconfd /system/vendor/bin/gtsconfd
+    class main
+    socket gts_socket seqpacket 0660 root system
+    seclabel u:r:gtsconfd:s0
 
 service cnd /system/vendor/bin/cnd
     class main
