@@ -1,0 +1,2 @@
+rw_dir_file(ims, sysfs_subsys)
+rw_dir_file(ims, sysfs_pronto)
