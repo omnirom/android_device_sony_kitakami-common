@@ -71,6 +71,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/etc/msm_irqbalance.conf:system/etc/msm_irqbalance.conf
 
+# GTS
+PRODUCT_COPY_FILES += \
+    $(SONY_ROOT)/system/etc/gts_config_list.txt:system/etc/gts_config_list.txt
+
 # Device Specific Hardware
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml \
