@@ -14,6 +14,30 @@ rqbalance.normal.balance_level=40
 rqbalance.normal.up_threshold=100 300 380 400 500 575 625 4294967295
 rqbalance.normal.down_threshold=0 70 200 280 330 450 515 585
 
+#system props for the MM modules
+
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-scan=true
+mmp.enable.3g2=true
+mm.enable.smoothstreaming=true
+media.aac_51_output_enabled=true
+av.debug.disable.pers.cache=true
+
+#3379827: Decimal sum after adding WAV parser flag
+#37491 is decimal sum of supported codecs in AAL
+#codecs: DivX DivXHD AVI AC3 ASF AAC QCP DTS 3G2 MP2TS
+mm.enable.qcom_parser=3379827
+
+# Enable AwesomePlayer stats
+persist.debug.sf.statistics=1
+
+# Print clip name being played
+media.stagefright.log-uri=1
+
 # Audio
 ro.qc.sdk.audio.ssr=false
 persist.audio.ssr.3mic=false
