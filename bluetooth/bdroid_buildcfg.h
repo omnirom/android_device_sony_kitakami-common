@@ -46,7 +46,6 @@ static inline const char* getBTDefaultName()
 #define BTM_DEF_LOCAL_NAME getBTDefaultName()
 #endif // OS_GENERIC
 
-/* #define BTA_AV_CO_CP_SCMS_T   TRUE */
-#define SDP_AVRCP_1_5   FALSE
+#define BTM_WBS_INCLUDED TRUE
 
 #endif
