@@ -87,6 +87,12 @@ on post-fs
     # busy loop to wait for qseecomd started
     exec - root root system -- /system/bin/init.qcom.qseecomd.sh
 
+    # create directory for display_cc
+    mkdir /data/display 0770 system system
+
+    # Display color correction is needed in charge only mode as well.
+    start display_cc
+
 on late-fs
     restorecon_recursive /persist
     write /sys/kernel/boot_adsp/boot 1
@@ -759,6 +765,14 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
     group system
     writepid /dev/cpuset/system-background/tasks
 
+# Color calibration
+service display_cc /system/vendor/bin/display_color_calib
+    class main
+    user system
+    group system
+    oneshot
+    disabled
+
 # OSS thermal management
 service thermanager /system/bin/thermanager /system/etc/thermanager.xml
     class main
@@ -837,6 +851,7 @@ service ril-daemon /system/bin/rild
 on property:vold.decrypt=trigger_restart_framework
     setprop vold.encrypt_progress ""
     start timekeep
+    start display_cc
 
 on property:persist.radio.multisim.config=dsds
     enable ril-daemon2
