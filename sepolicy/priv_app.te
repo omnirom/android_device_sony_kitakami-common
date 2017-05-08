@@ -18,3 +18,5 @@ r_dir_file(priv_app, idd_data_file)
 r_dir_file(priv_app, system_app_data_file)
 r_dir_file(priv_app, radio_data_file)
 r_dir_file(priv_app, nfc_data_file)
+
+rw_dir_file(priv_app, rfs_system_file)
