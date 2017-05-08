@@ -92,6 +92,48 @@ on post-fs
     # Display color correction is needed in charge only mode as well.
     start display_cc
 
+    # MHL driver. To support MHL power off charge,
+    # the insmod must be done before chargemon.
+    chown system system /sys/devices/virtual/mhl/ga/connected_ver
+    chown system system /sys/devices/virtual/mhl/ga/connected_cable
+    chown system system /sys/devices/virtual/mhl/ga/monitor_name
+    chown system system /sys/devices/virtual/mhl/ga/manufacturer_name
+
+    # System setting access from white balance app into fb.
+    chown system graphics /dev/graphics/fb0
+    chown system graphics /dev/graphics/fb1
+    chown system graphics /dev/graphics/fb2
+
+    # for MHL Thermal
+    chown system system /sys/devices/virtual/mhl/thermal/forced_stop
+    chmod 0220 /sys/devices/virtual/mhl/thermal/forced_stop
+
+
+    # led RGB
+    chown system system /sys/class/leds/rgb/sync_state
+    chown system system /sys/class/leds/rgb/start_blink
+    chown system system /sys/class/leds/led:rgb_red/brightness
+    chown system system /sys/class/leds/led:rgb_red/lut_pwm
+    chown system system /sys/class/leds/led:rgb_red/step_duration
+    chown system system /sys/class/leds/led:rgb_red/pause_lo_multi
+    chown system system /sys/class/leds/led:rgb_red/pause_hi_multi
+    chown system system /sys/class/leds/led:rgb_green/brightness
+    chown system system /sys/class/leds/led:rgb_green/lut_pwm
+    chown system system /sys/class/leds/led:rgb_green/step_duration
+    chown system system /sys/class/leds/led:rgb_green/pause_lo_multi
+    chown system system /sys/class/leds/led:rgb_green/pause_hi_multi
+    chown system system /sys/class/leds/led:rgb_blue/brightness
+    chown system system /sys/class/leds/led:rgb_blue/lut_pwm
+    chown system system /sys/class/leds/led:rgb_blue/step_duration
+    chown system system /sys/class/leds/led:rgb_blue/pause_lo_multi
+    chown system system /sys/class/leds/led:rgb_blue/pause_hi_multi
+    # panel ID
+    chown system system /sys/devices/mdss_dsi_panel/panel_id
+    chmod 0440 /sys/devices/mdss_dsi_panel/panel_id
+
+    # backlight
+    chown system system /sys/class/leds/wled/bl_scale
+
 on late-fs
     restorecon_recursive /persist
     write /sys/kernel/boot_adsp/boot 1
