@@ -20,13 +20,37 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
 SOMC_PLATFORM := kitakami
+PRODUCT_PLATFORM := $(SOMC_PLATFORM)
 
 SONY_ROOT := $(PLATFORM_COMMON_PATH)/rootdir
+
+# We use caf hals for media / display and audio
+BOARD_USES_QCOM_HARDWARE := true
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8992
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8992
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8992
+
+# GPU
+BOARD_USES_ADRENO := true
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno418.
+
+# CNE
+BOARD_USES_QCNE := true
+
+# We use stock camera blobs
+USE_CAMERA_STUB := true
+
+# cryptfs hw
+TARGET_HW_DISK_ENCRYPTION := true
+
+# kernel
+TARGET_KERNEL_SOURCE := kernel/sony/msm8994
 
 # Media
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
-    $(SONY_ROOT)/system/etc/media_profiles.xml:system/etc/media_profiles.xml
+    $(SONY_ROOT)/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
+    $(SONY_ROOT)/system/etc/media_codecs_performance.xml:system/etc/media_codecs_performance.xml
 
 # Broadcom BT
 PRODUCT_COPY_FILES += \
@@ -53,13 +77,36 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
+PRODUCT_COPY_FILES += \
+    frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:/system/etc/a2dp_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:/system/etc/audio_policy_volumes.xml \
+    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
+    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
+
+# Audio configuration files
+PRODUCT_COPY_FILES += \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_policy.conf:system/etc/audio_policy.conf \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/mixer_paths.xml:system/etc/mixer_paths.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
+    hardware/qcom/audio-caf-msm8992/configs/msm8994/listen_platform_info.xml:system/etc/listen_platform_info.xml
+
 DEVICE_PACKAGE_OVERLAYS += \
     $(PLATFORM_COMMON_PATH)/overlay
 
 # Platform Init
 PRODUCT_PACKAGES += \
     fstab.kitakami \
-    init.kitakami.pwr
+    init.kitakami.pwr \
+    init.qcom.qseecomd
 
 # NFC packages
 PRODUCT_PACKAGES += \
@@ -69,36 +116,85 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.msm8994
+    audio.primary.msm8994 \
+    audio.a2dp.default \
+    audio_policy.msm8994 \
+    audio.r_submix.default \
+    audio.usb.default \
+    audio_amplifier.msm8994 \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    libqcompostprocbundle
 
 # GFX
 PRODUCT_PACKAGES += \
     copybit.msm8994 \
     gralloc.msm8994 \
     hwcomposer.msm8994 \
-    memtrack.msm8994
+    memtrack.msm8994 \
+    liboverlay
+
+# Extra tools
+PRODUCT_PACKAGES += \
+    tinycap \
+    tinymix \
+    tinypcminfo \
+    tinyplay \
+    libtinyxml
+
+# IPA
+PRODUCT_PACKAGES += \
+    ipacm \
+    ipacm-diag \
+    IPACM_cfg.xml
+
+# Fingerprint
+PRODUCT_PACKAGES += \
+    fingerprintd
+
+# OMX
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libextmedia_jni \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxCore \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libOmxVdec \
+    libOmxVenc \
+    libdivxdrmdecrypt \
+    libOmxSwVencMpeg4 \
+    libOmxVidcCommon \
+    libstagefrighthw
+
+# lib shim
+PRODUCT_PACKAGES += \
+    libshim_wvm \
+    libshim_imsvt
+
+# Snapdragon Camera
+PRODUCT_PACKAGES += \
+    SnapdragonCamera
+
+# Telephony
+PRODUCT_PACKAGES += \
+    ims-ext-common \
+    telephony-ext \
+    rcscommon \
+    rcscommon.xml
 
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8994
 
-# CAMERA
-ifneq (,$(filter true, $(USE_CAMERA_STUB)))
-# CAMERA
-PRODUCT_PACKAGES += \
-    camera.msm8994
-else
-# CAMERA & SENSORS
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qc.sdk.sensors.gestures=true \
-    ro.qc.sdk.gestures.camera=false \
-    ro.qc.sdk.camera.facialproc=false \
-    camera.disable_zsl_mode=1
-endif
-
 # Keymaster
 PRODUCT_PACKAGES += \
     keystore.msm8994
+
+# Sensor multihal
+PRODUCT_PACKAGES += \
+    sensors.msm8994
 
 # FM
 PRODUCT_PACKAGES += \
@@ -106,47 +202,5 @@ PRODUCT_PACKAGES += \
     brcm-uim-sysfs \
     libfmjni
 
-# RILD
-PRODUCT_PROPERTY_OVERRIDES += \
-    rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
-    ril.subscription.types=NV,RUIM
-
-# system prop for opengles version
-# 196609 is decimal for 0x30001 to
-# report major/minor versions as 3/1
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196609
-
-# aDSP sensors
-## max rate
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qti.sensors.max_accel_rate=false \
-    ro.qti.sensors.max_gyro_rate=false \
-    ro.qti.sensors.max_mag_rate=false \
-    ro.qti.sensors.max_geomag_rotv=50
-
-## sensor type
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qti.sdk.sensors.gestures=false \
-    ro.qti.sensors.pedometer=false \
-    ro.qti.sensors.step_detector=false \
-    ro.qti.sensors.step_counter=false \
-    ro.qti.sensors.pam=false \
-    ro.qti.sensors.scrn_ortn=false \
-    ro.qti.sensors.smd=false \
-    ro.qti.sensors.game_rv=false \
-    ro.qti.sensors.georv=false \
-    ro.qti.sensors.cmc=false \
-    ro.qti.sensors.bte=false \
-    ro.qti.sensors.fns=false \
-    ro.qti.sensors.qmd=false \
-    ro.qti.sensors.amd=false \
-    ro.qti.sensors.rmd=false \
-    ro.qti.sensors.vmd=false \
-    ro.qti.sensors.gtap=false \
-    ro.qti.sensors.tap=false \
-    ro.qti.sensors.facing=false \
-    ro.qti.sensors.tilt=false \
-    ro.qti.sensors.tilt_detector=false \
-    ro.qti.sensors.dpc=false \
-    ro.qti.sensors.wu=true
+# TWRP
+$(call inherit-product, device/sony/kitakami-common/twrp.mk)
