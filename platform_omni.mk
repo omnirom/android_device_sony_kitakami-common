@@ -39,6 +39,24 @@ TARGET_KERNEL_SOURCE := kernel/sony/msm8994
 # Common config
 include device/sony/kitakami-common/platform.mk
 
+# GFX
+PRODUCT_PACKAGES += \
+    liboverlay
+
+# Extra tools
+PRODUCT_PACKAGES += \
+    tinycap \
+    tinymix \
+    tinypcminfo \
+    tinyplay \
+    libtinyxml
+
+# Media
+PRODUCT_PACKAGES += \
+    libdivxdrmdecrypt \
+    libOmxSwVencMpeg4 \
+    libOmxVidcCommon
+
 # IPA
 PRODUCT_PACKAGES += \
     ipacm \
