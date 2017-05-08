@@ -60,6 +60,11 @@
 /system/vendor/bin/ims_rtp_daemon               u:object_r:ims_exec:s0
 /system/vendor/bin/imscmservice                 u:object_r:imscm_exec:s0
 /system/vendor/bin/tftp_server                  u:object_r:rfs_access_exec:s0
+/system/vendor/bin/loc_launcher                 u:object_r:location_exec:s0
+/system/vendor/bin/lowi-server                  u:object_r:location_exec:s0
+/system/vendor/bin/xtwifi-inet-agent            u:object_r:location_exec:s0
+/system/vendor/bin/xtwifi-client                u:object_r:location_exec:s0
+/system/vendor/bin/garden_app                   u:object_r:location_exec:s0
 
 ###################################
 # sysfs files
