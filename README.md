@@ -13,4 +13,7 @@ Kitakami devices:
     Xperia Z5 Premium..........Satsuki
 
 Build instructions
-http://developer.sonymobile.com/knowledge-base/open-source/open-devices/aosp-build-instructions/
+
+https://omnirom.org/
+https://github.com/omnirom/android
+https://docs.omnirom.org

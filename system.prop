@@ -93,3 +93,61 @@ ro.qcom.ad.calib.data=/system/etc/ad_calib.cfg
 # Bluetooth
 bluetooth.enable_timeout_ms=12000
 ro.bluetooth.hfp.ver=1.6
+
+ro.qc.sdk.sensors.gestures=true
+ro.qc.sdk.gestures.camera=false
+ro.qc.sdk.camera.facialproc=false
+camera.disable_zsl_mode=1
+
+# RILD
+rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
+ril.subscription.types=NV,RUIM
+
+# system prop for opengles version
+# 196609 is decimal for 0x30001 to
+# report major/minor versions as 3/1
+ro.opengles.version=196609
+
+# aDSP sensors
+## max rate
+ro.qti.sensors.max_accel_rate=false
+ro.qti.sensors.max_gyro_rate=false
+ro.qti.sensors.max_mag_rate=false
+ro.qti.sensors.max_geomag_rotv=50
+
+## sensor type
+ro.qti.sdk.sensors.gestures=false
+ro.qti.sensors.pedometer=false
+ro.qti.sensors.step_detector=false
+ro.qti.sensors.step_counter=false
+ro.qti.sensors.pam=false
+ro.qti.sensors.scrn_ortn=false
+ro.qti.sensors.smd=false
+ro.qti.sensors.game_rv=false
+ro.qti.sensors.georv=false
+ro.qti.sensors.cmc=false
+ro.qti.sensors.bte=false
+ro.qti.sensors.fns=false
+ro.qti.sensors.qmd=false
+ro.qti.sensors.amd=false
+ro.qti.sensors.rmd=false
+ro.qti.sensors.vmd=false
+ro.qti.sensors.gtap=false
+ro.qti.sensors.tap=false
+ro.qti.sensors.facing=false
+ro.qti.sensors.tilt=false
+ro.qti.sensors.tilt_detector=false
+ro.qti.sensors.dpc=false
+ro.qti.sensors.wu=true
+
+# Reduce client buffer size for fast audio output tracks
+af.fast_track_multiplier=1
+
+# Low latency audio buffer size in frames
+audio_hal.period_size=192
+
+ro.vendor.extension_library=libqti-perfd-client.so
+
+# CNE / DPM
+persist.cne.feature=1
+persist.dpm.feature=1
