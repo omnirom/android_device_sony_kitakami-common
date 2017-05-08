@@ -1007,6 +1007,12 @@ service dpmd /system/vendor/bin/dpmd
     seclabel u:r:dpmd:s0
     group system readproc
 
+service loc_launcher /system/vendor/bin/loc_launcher
+    #loc_launcher will start as root and set its uid to gps
+    class late_start
+    group gps inet net_raw qcom_diag net_admin wifi
+    seclabel u:r:location:s0
+
 # Start Key Provision daemon
 service keyprovd /system/vendor/bin/keyprovd
     class late_start
