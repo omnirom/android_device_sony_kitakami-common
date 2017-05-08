@@ -111,7 +111,12 @@ USE_CAMERA_STUB := true
 # Multihal
 USE_SENSOR_MULTI_HAL := true
 
-#Camera
+# GPS
+USE_DEVICE_SPECIFIC_GPS := true
+USE_DEVICE_SPECIFIC_LOC_API := true
+TARGET_NO_RPC := true
+
+# Camera
 TARGET_USES_MEDIA_EXTENSIONS := true
 
 #BCM BT/FM
