@@ -14,6 +14,7 @@
 
 import init.common.usb.rc
 import init.kitakami.pwr.rc
+import ini.omni.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
