@@ -1,1 +1,4 @@
 allow audioserver rootfs:lnk_file getattr;
+
+# Connect to /dev/socket/tad
+unix_socket_connect(audioserver, tad, tad)
