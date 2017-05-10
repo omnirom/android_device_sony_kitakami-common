@@ -43,6 +43,11 @@ USE_CAMERA_STUB := true
 # kernel
 TARGET_KERNEL_SOURCE := kernel/sony/msm8994
 
+# Enable features in video HAL that can compile only on this platform
+TARGET_USES_MEDIA_EXTENSIONS := true
+
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
 # Media
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
