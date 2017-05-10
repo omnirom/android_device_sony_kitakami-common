@@ -40,9 +40,6 @@ BOARD_USES_QCNE := true
 # We use stock camera blobs
 USE_CAMERA_STUB := true
 
-# cryptfs hw
-TARGET_HW_DISK_ENCRYPTION := true
-
 # kernel
 TARGET_KERNEL_SOURCE := kernel/sony/msm8994
 
