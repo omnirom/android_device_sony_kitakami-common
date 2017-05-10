@@ -136,4 +136,6 @@ BOARD_SEPOLICY_DIRS += $(PLATFORM_COMMON_PATH)/sepolicy
 
 TARGET_HW_DISK_ENCRYPTION := false
 
+TARGET_USES_IMS := true
+
 include device/sony/common/CommonConfigOmni.mk
