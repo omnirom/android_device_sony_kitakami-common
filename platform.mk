@@ -26,6 +26,7 @@ SONY_ROOT := $(PLATFORM_COMMON_PATH)/rootdir
 
 # We use caf hals for media / display and audio
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_USES_QCOM_BSP := true
 TARGET_QCOM_DISPLAY_VARIANT := caf-msm8992
 TARGET_QCOM_MEDIA_VARIANT := caf-msm8992
 TARGET_QCOM_AUDIO_VARIANT := caf-msm8992
