@@ -5,6 +5,8 @@
 COMMON_PATH := device/sony/kitakami-common
 TWRP_OUT := recovery/root
 
+TW_MAX_BRIGHTNESS := 255
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/sbin/pulldecryptfiles.sh:$(TWRP_OUT)/sbin/pulldecryptfiles.sh
 
