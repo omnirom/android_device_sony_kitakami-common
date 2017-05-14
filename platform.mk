@@ -223,5 +223,21 @@ PRODUCT_PACKAGES += \
     brcm-uim-sysfs \
     libfmjni
 
+# Default properties
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.semc.version.sw=1295-7444 \
+    ro.semc.version.sw_variant=GLOBAL-LTE2A \
+    ro.semc.version.sw_revision=32.3.A.2.33 \
+    ro.semc.version.fs_revision=32.3.A.2.33
+
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.semc.version.sw_type=user
+endif
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.semc.version.cust=OmniROM \
+    ro.semc.version.cust_revision=$(PLATFORM_VERSION)_$(BUILD_ID)
+
 # TWRP
 $(call inherit-product, device/sony/kitakami-common/twrp.mk)
