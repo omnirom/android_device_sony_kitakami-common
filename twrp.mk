@@ -8,6 +8,7 @@ TWRP_OUT := recovery/root
 TW_MAX_BRIGHTNESS := 255
 
 PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/rootdir/twrp.fstab:$(TWRP_OUT)/etc/twrp.fstab \
     $(COMMON_PATH)/rootdir/sbin/pulldecryptfiles.sh:$(TWRP_OUT)/sbin/pulldecryptfiles.sh
 
 PRODUCT_COPY_FILES += \
