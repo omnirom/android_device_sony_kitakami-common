@@ -16,7 +16,6 @@ qcom.hw.aac.encoder=true
 av.debug.disable.pers.cache=true
 persist.debug.sf.statistics=1
 media.stagefright.log-uri=1
-ro.media.av_latency=0
 
 #3248177 Decimal sum after removing AC3 and DTS parser flag
 #3248243 Decimal sum after removing 3GP and 3G2 parser flag
@@ -29,6 +28,8 @@ mm.enable.qcom_parser=3248177
 # Enable AwesomePlayer stats
 persist.debug.sf.statistics=1
 
+#Power save configuration used for 4k video recording
+vidc.debug.perf.mode=2
 
 # Audio
 ro.qc.sdk.audio.ssr=false
