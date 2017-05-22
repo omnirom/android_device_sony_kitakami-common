@@ -51,6 +51,9 @@ TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Media
 PRODUCT_COPY_FILES += \
+    $(SONY_ROOT)/system/etc/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
+    $(SONY_ROOT)/system/etc/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    $(SONY_ROOT)/system/etc/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
     $(SONY_ROOT)/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
     $(SONY_ROOT)/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
     $(SONY_ROOT)/system/etc/media_codecs_performance.xml:system/etc/media_codecs_performance.xml
@@ -94,21 +97,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
-
-# Audio configuration files
-PRODUCT_COPY_FILES += \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_policy.conf:system/etc/audio_policy.conf \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/mixer_paths.xml:system/etc/mixer_paths.xml \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
-    hardware/qcom/audio-caf-msm8992/configs/msm8994/listen_platform_info.xml:system/etc/listen_platform_info.xml
 
 DEVICE_PACKAGE_OVERLAYS += \
     $(PLATFORM_COMMON_PATH)/overlay
