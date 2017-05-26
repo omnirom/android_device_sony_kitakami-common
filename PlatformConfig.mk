@@ -106,6 +106,9 @@ SNDRV_COMPRESS_SET_NEXT_TRACK_PARAM := true
 # We use stock camera blobs
 USE_CAMERA_STUB := true
 
+# Disable dex-preoptimization
+WITH_DEXPREOPT := false
+
 # Multihal
 USE_SENSOR_MULTI_HAL := true
 
@@ -115,7 +118,7 @@ USE_DEVICE_SPECIFIC_LOC_API := true
 TARGET_NO_RPC := true
 
 #BCM BT/FM
-BOARD_HAVE_BCM_FM_SYSFS := "/sys/devices/platform/bcm_ldisc/"
+BOARD_HAVE_BCM_FM_SYSFS := "/sys/devices/platform/bcm_ldisc"
 
 # Do not build keymaster
 TARGET_PROVIDES_KEYMASTER := true
